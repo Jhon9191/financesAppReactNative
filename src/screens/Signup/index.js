@@ -10,11 +10,11 @@ import {
     SubmitText,
     Link,
     LinkText 
-} from './styles';
+} from '../Signin/styles.js';
 
 const Signin = () => {
-    
     const navigator = useNavigation();
+    const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
@@ -24,6 +24,15 @@ const Signin = () => {
         <Background>
             <Container>
                 <Logo source={require('../../../assets/Logo.png')} />
+                <AreaInput>
+                    <Input
+                        placeholder="Nome"
+                        autoCorrect={false}
+                        autoCapitalize="none"
+                        value={name}
+                        onChangeText={(text) => setName(text)}
+                   />
+                </AreaInput>
 
                 <AreaInput>
                     <Input
@@ -45,12 +54,14 @@ const Signin = () => {
                    />
                 </AreaInput>
 
+
+
                 <SubmitButton>
-                    <SubmitText>Logar</SubmitText>
+                    <SubmitText>Cadastrar</SubmitText>
                 </SubmitButton>
 
-                <Link onPress={()=> navigator.navigate("Signup")}>
-                    <LinkText>Criar uma conta!</LinkText>
+                <Link onPress={()=> navigator.navigate("Signim")} > 
+                    <LinkText>Já possuo conta</LinkText>
                 </Link>
 
             </Container>

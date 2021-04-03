@@ -23,13 +23,13 @@ export const AreaInput = styled.View`
 export const Input = styled.TextInput.attrs({
     placeholderTextColor: 'rgba(255,255,255,0.20)'
 })`
-background-color: rgba(0,0,0,0.20);
-width: 90%;
-font-size: 14px;
-color: #FFF;
-margin-bottom: 15px;
-padding: 10px;
-border-radius: 7px;
+    background-color: rgba(0,0,0,0.20);
+    width: 90%;
+    font-size: 14px;
+    color: #FFF;
+    margin-bottom: 15px;
+    padding: 15px;
+    border-radius: 7px;
 `;
 
 export const SubmitButton = styled.TouchableOpacity`
