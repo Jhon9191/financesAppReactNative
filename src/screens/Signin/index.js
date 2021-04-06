@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { useNavigation } from '@react-navigation/native'
 import {
     Background, 
@@ -12,8 +12,12 @@ import {
     LinkText 
 } from './styles';
 
+import { AuthContext } from "../../context/auth"
+
 const Signin = () => {
     
+    const { user } = useContext(AuthContext)
+    console.log(user)
     const navigator = useNavigation();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
