@@ -16,7 +16,7 @@ export default function App() {
     return (
         <NavigationContainer>
             <AuthProvider>
-                <Rota />
+                <Routes />
             </AuthProvider>
         </NavigationContainer>
     );

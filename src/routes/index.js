@@ -1,11 +1,14 @@
-import React from 'react';
+import React,{ useContext} from 'react';
 
-//import appRoutes from './routes';
+import AppRoutes from './appRoutes';
 import AuthRoutes from './authRoutes';
 
+import {AuthContext} from "../context/auth"
+ 
 const Routes = () => {
+    const { signed } = useContext(AuthContext)
     return(
-        <AuthRoutes/>
+        signed?  <AppRoutes/> : <AuthRoutes/> 
     )
 }
 
