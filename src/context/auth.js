@@ -1,16 +1,41 @@
 import React, { createContext, useState } from 'react';
 
+import Firebase from "../services/firebaseConection"
+
 export const AuthContext = createContext({});
 
 const AuthProvider = ({ children }) => {
 
     const [user, setUser] = useState(null);
 
+    const signUp = async (email, password, name) => {
+        await Firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(async (value) => {
+                let uid = value.user.uid;
+                await Firebase.database().ref('users').child(uid).set({
+                    name: name,
+                    balance: 0
+                })
+                    .then(() => {
+                        let data = {
+                            uid: uid,
+                            name: name,
+                            email: value.user.email
+                        };
+                        setUser(data);
+                    })
+            })
+            .catch((error) => {
+                alert(error.code);
+            })
+    }
+
     return (
         <AuthContext.Provider value={{
             signed: !!user,
-            user
-        }}> 
+            user,
+            signUp
+        }}>
             {children}
         </AuthContext.Provider>
     );

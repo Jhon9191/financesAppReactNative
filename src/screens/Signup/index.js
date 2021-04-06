@@ -15,13 +15,15 @@ import {
 import { AuthContext } from "../../context/auth"
 
 const Signin = () => {
-    const { user } = useContext(AuthContext)
+    const { signUp } = useContext(AuthContext)
     const navigator = useNavigation();
     const [name, setName] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
-    console.log(password, email)
+    const handleRegister = () => {
+        signUp(email, password, name);
+    }
 
     return (
         <Background>
@@ -59,7 +61,7 @@ const Signin = () => {
 
 
 
-                <SubmitButton>
+                <SubmitButton onPress={handleRegister}>
                     <SubmitText>Cadastrar</SubmitText>
                 </SubmitButton>
 
