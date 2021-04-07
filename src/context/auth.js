@@ -1,4 +1,5 @@
 import React, { createContext, useState } from 'react';
+import AsyncStorage from "@react-native-community/async-storage"
 
 import Firebase from "../services/firebaseConection"
 
@@ -23,6 +24,7 @@ const AuthProvider = ({ children }) => {
                             email: value.user.email
                         };
                         setUser(data);
+                        saveUserStorage(data);
                     })
             })
             .catch((error) => {
@@ -42,11 +44,16 @@ const AuthProvider = ({ children }) => {
                             email: value.user.email
                         };
                         setUser(data);
+                        saveUserStorage(data);
                     })
             })
             .catch((error)=>{
                 alert(error.code)
             })
+    }
+
+    const saveUserStorage = async (data) => {
+        await AsyncStorage.setItem("AUTH_USER", JSON.stringify(data))
     }
 
     return (
