@@ -16,13 +16,14 @@ import { AuthContext } from "../../context/auth"
 
 const Signin = () => {
     
-    const { user } = useContext(AuthContext)
-    console.log(user)
+    const { signin } = useContext(AuthContext)
     const navigator = useNavigation();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     
-    console.log(password, email)
+    const handleLogin = () => {
+        signin(email, password);
+    }
 
     return (
         <Background>
@@ -49,7 +50,7 @@ const Signin = () => {
                    />
                 </AreaInput>
 
-                <SubmitButton>
+                <SubmitButton onPress={handleLogin}>
                     <SubmitText>Logar</SubmitText>
                 </SubmitButton>
 

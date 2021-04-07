@@ -30,11 +30,31 @@ const AuthProvider = ({ children }) => {
             })
     }
 
+    const signin = async (email, password) => {
+        await Firebase.auth().signInWithEmailAndPassword(email, password)
+            .then(async (value) => {
+                let uid = value.user.uid;
+                await Firebase.database().ref('users').child(uid).once('value')
+                    .then((snapshot)=>{
+                        let data = {
+                            uid : uid,
+                            name: snapshot.val().nome,
+                            email: value.user.email
+                        };
+                        setUser(data);
+                    })
+            })
+            .catch((error)=>{
+                alert(error.code)
+            })
+    }
+
     return (
         <AuthContext.Provider value={{
             signed: !!user,
             user,
-            signUp
+            signUp,
+            signin
         }}>
             {children}
         </AuthContext.Provider>
