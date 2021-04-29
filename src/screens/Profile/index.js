@@ -1,23 +1,36 @@
 import React, { useState, useContext } from 'react';
-import { 
-    Text, 
-    View, 
-    TouchableOpacity,
-    SafeAreaView 
-} from 'react-native';
-
 import { AuthContext } from "../../context/auth"
+import { useNavigation } from '@react-navigation/native';
+import {
+    Container,
+    Welcome,
+    Name,
+    NewButton,
+    TextButton,
+    LogoutButton,
+    ContainerText
+} from './styles'
 
 const Profile = () => {
-
-    const {  } = useContext(AuthContext)
+    const navigation = useNavigation();
+    const { user, logout } = useContext(AuthContext)
 
     return (
-        <SafeAreaView>
-            <TouchableOpacity onPress={() => logout()}>
-                <Text>Profile</Text>
-            </TouchableOpacity>
-        </SafeAreaView>
+        <Container>
+            <ContainerText>
+                <Welcome>Olá, </Welcome>
+                <Name>{user && user.nome}</Name>
+            </ContainerText>
+        
+            <NewButton onPress ={()=>navigation.navigate("New")}>
+                <TextButton>Registrar gastos</TextButton>
+            </NewButton>
+
+            <LogoutButton onPress={()=> logout()}>
+                <TextButton>Sair</TextButton>
+            </LogoutButton>
+
+        </Container>
     )
 }
 
