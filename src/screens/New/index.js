@@ -8,13 +8,15 @@ import {
 
 import { AuthContext } from "../../context/auth"
 
-const Home = () => {
+const New = () => {
+
+    const {  } = useContext(AuthContext)
 
     return (
         <SafeAreaView>
-            <Text>Home</Text>
+           <Text>New</Text> 
         </SafeAreaView>
     )
 }
 
-export default Home;
+export default New;

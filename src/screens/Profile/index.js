@@ -8,13 +8,17 @@ import {
 
 import { AuthContext } from "../../context/auth"
 
-const Home = () => {
+const Profile = () => {
+
+    const {  } = useContext(AuthContext)
 
     return (
         <SafeAreaView>
-            <Text>Home</Text>
+            <TouchableOpacity onPress={() => logout()}>
+                <Text>Profile</Text>
+            </TouchableOpacity>
         </SafeAreaView>
     )
 }
 
-export default Home;
+export default Profile;
