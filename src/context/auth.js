@@ -24,27 +24,26 @@ const AuthProvider = ({ children }) => {
     }, []);
 
     const signUp = async (email, password, name) => {
-        console.log(name)
-        // await Firebase.auth().createUserWithEmailAndPassword(email, password)
-        //     .then(async (value) => {
-        //         let uid = value.user.uid;
-        //         await Firebase.database().ref('users').child(uid).set({
-        //             name: name,
-        //             balance: 0
-        //         })
-        //             .then(() => {
-        //                 let data = {
-        //                     uid: uid,
-        //                     name: name,
-        //                     email: value.user.email
-        //                 };
-        //                 setUser(data);
-        //                 saveUserStorage(data);
-        //             })
-        //     })
-        //     .catch((error) => {
-        //         alert(error.code);
-        //     })
+        await Firebase.auth().createUserWithEmailAndPassword(email, password)
+            .then(async (value) => {
+                let uid = value.user.uid;
+                await Firebase.database().ref('users').child(uid).set({
+                    name: name,
+                    balance: 0
+                })
+                    .then(() => {
+                        let data = {
+                            uid: uid,
+                            name: name,
+                            email: value.user.email
+                        };
+                        setUser(data);
+                        saveUserStorage(data);
+                    })
+            })
+            .catch((error) => {
+                alert(error.code);
+            })
     }
 
     const signin = async (email, password) => {
@@ -55,7 +54,7 @@ const AuthProvider = ({ children }) => {
                     .then((snapshot)=>{
                         let data = {
                             uid : uid,
-                            name: snapshot.val().nome,
+                            name: snapshot.val().name,
                             email: value.user.email
                         };
                         setUser(data);

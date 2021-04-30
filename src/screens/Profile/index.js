@@ -22,7 +22,7 @@ const Profile = () => {
             <Header/>
             <ContainerText>
                 <Welcome>Olá, </Welcome>
-                <Name>{user && user.nome}</Name>
+                <Name>{user && user.name}</Name>
             </ContainerText>
         
             <NewButton onPress ={()=>navigation.navigate("New")}>
