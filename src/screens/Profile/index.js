@@ -11,12 +11,15 @@ import {
     ContainerText
 } from './styles'
 
+import Header from '../../components/Header';
+
 const Profile = () => {
     const navigation = useNavigation();
     const { user, logout } = useContext(AuthContext)
 
     return (
         <Container>
+            <Header/>
             <ContainerText>
                 <Welcome>Olá, </Welcome>
                 <Name>{user && user.nome}</Name>

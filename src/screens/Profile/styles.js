@@ -3,7 +3,7 @@ import {Rc} from 'react-native'
 export const Container = styled.SafeAreaView`
     flex: 1;
     background-color: #131313;
-    justify-content: center;
+    /* justify-content: center; */
     align-items: center;
 `;
 export const ContainerText = styled.SafeAreaView`
